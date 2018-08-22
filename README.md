@@ -79,6 +79,6 @@ Search for a text on the screen using Google OCR (the google API key is needed w
 
 ## Generic Arguments for all actions:
 - `name`: [required] - human readable name for an action
-- `type`: [required] - type of an action, one of config, key_sequence, type_write and click
+- `type`: [required] - type of an action.
 - `before_sleep`: [optional] - Sleep time in seconds to sleep before action
 - `after_sleep`: [optional] - Sleep time in seconds to sleep after action

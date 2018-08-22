@@ -1,0 +1,17 @@
+- name: open spotlight by cmd+space
+  type: key_sequence
+  keys: ["command", "space"]
+
+- name: type "Chrome" in spotlight
+  type: type_write
+  text: chrome
+
+- name: press "enter"
+  type: key_sequence
+  keys: ["enter"]
+  after_sleep: 2
+
+- name: click full screen green button
+  type: click
+  path: images/full_screen_button.png
+  show: true

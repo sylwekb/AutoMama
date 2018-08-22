@@ -1,0 +1,8 @@
+pyobjc-core==4.2.2
+pyobjc==4.2.2
+pyautogui==0.9.38
+numpy==1.15.0
+scipy==1.1.0
+pyyaml==3.13
+opencv-python==3.4.2.17
+opencv-contrib-python==3.4.2.17

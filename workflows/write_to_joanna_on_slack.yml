@@ -1,0 +1,47 @@
+- name: open spotlight
+  type: key_sequence
+  keys: ["command", "space"]
+
+- name: write "slack" in spotlight
+  type: type_write
+  text: slack
+
+- name: press enter
+  type: key_sequence
+  keys: ["enter"]
+
+- name: wait for poznan slack logo to appear
+  type: wait_for_appear
+  path: images/poznan_logo.png
+
+- name: click poznan logo
+  type: click
+  path: images/poznan_logo.png
+
+- name: wait for poznan slack header to appear
+  type: wait_for_appear
+  path: images/poznan_header.png
+
+- name: open quick look up
+  type: key_sequence
+  keys: ["command", "k"]
+
+- name: write "asia"
+  type: type_write
+  text: asia
+
+- name: press enter
+  type: key_sequence
+  keys: ["enter"]
+
+- name: write "asia"
+  type: type_write
+  text: <3 love you po raz drugi
+
+- name: press enter
+  type: key_sequence
+  keys: ["enter"]
+
+- name: quit slack
+  type: key_sequence
+  keys: ["command", "q"]

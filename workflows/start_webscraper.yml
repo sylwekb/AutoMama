@@ -1,0 +1,127 @@
+# Types of actions and required arguments:
+# - config - Set default values for some of the variables. If used - should be on the first place
+#            in the instruction list.
+#
+#     between_sleep: [optional][default=1] - Sleep time in seconds between each action.
+#     default_match_strategy: [optional][default=template_matching] - default match strategy for
+#                                                                     clicks.
+#
+# - key_sequence - Presses key sequence for example for opening spotlight command+space.
+#
+#     keys: [required] - list of keys to pres in a sequence.
+#     sleep: [optional][default=0] - time in seconds between key "downs" and key "ups".
+
+# - type_write - Writing text
+#
+#     text: [required] - text to write.
+#     interval: [optional][default=0.05] time interval in seconds between each key press.
+#
+# - click - Search for a fragment on the screen from template and click left mouse button.
+#
+#     path: [required] - path to template image.
+#     show: [optional][default=false] - shows the screen shot of a screen with the
+#                                        template matched on it. Useful if AutoMama
+#                                        is mis-clicking.
+#     strategy: [optional][default=template_matching] - the Computer Vision method to
+#                                                       search for a region to click.
+#               - template_matching - more accurate but requires template size which
+#                                     exactly matches its size on the screen.
+#               - sift - less accurate but is scale-invariant - so the template can be in
+#                        any size.
+#
+# - wait_until_visible - wait until the template is not visible on the screen
+#
+#     path: [required] - path to template image.
+#     check_interval: [optional][default=1] - time to sleep between the checks
+#     strategy: [optional][default=template_matching] - the same as for `click`
+#     timeout: [optional][default=120] - time for seconds after we assume the action failed.
+#
+# Generic Arguments for all actions:
+# - name: [required] - human readable name for an action
+#   type: [required] - type of an action, one of config, key_sequence, type_write and click
+#   before_sleep: [optional] - Sleep time in seconds to sleep before action
+#   after_sleep: [optional] - Sleep time in seconds to sleep after action
+
+
+- name: config
+  type: config
+  between_sleep: 0.1
+
+# - name: click evernote icon in toolbar
+#   type: click
+#   path: images/evernote.png
+
+# - name: type greating for Krzysiu
+#   type: type_write
+#   text: NO ELO KRZYSIU CO TAM?
+
+# - name: click save in evernote
+#   type: click
+#   path: images/savetoevernote.png
+
+- name: open spotlight by cmd+space
+  type: key_sequence
+  keys: ["command", "space"]
+
+- name: type "Chrome" in spotlight
+  type: type_write
+  text: chrome
+
+- name: press "enter"
+  type: key_sequence
+  keys: ["enter"]
+  after_sleep: 2
+
+- name: new tab in Chrome
+  type: key_sequence
+  keys: ["command", "t"]
+  after_sleep: 2
+
+- name: open developer tools in chrome
+  type: key_sequence
+  keys: ["alt", "command", "j"]
+  after_sleep: 2
+
+- name: click web scraper tab
+  type: click
+  path: images/web_scraper.png
+  after_sleep: 2
+
+- name: click on sitemap
+  type: click
+  path: images/faktury_domeny_tv.png
+
+- name: click sitemap dropdown
+  type: click
+  path: images/sitemap_faktury_domeny_tv.png
+
+- name: click "Scrape" option in a dropdown
+  type: click
+  path: images/scrape.png
+
+- name: click "start scraping" button
+  type: click
+  path: images/start_scraping.png
+
+- name: wait until gumtree logo disappears
+  type: wait_until_visible
+  path: images/gumtree_logo.png
+  check_interval: 3
+  timeout: 120
+  before_sleep: 3
+
+- name: click "refresh" button
+  type: click
+  path: images/refresh.png
+
+- name: click sitemap dropdown again
+  type: click
+  path: images/sitemap_faktury_domeny_tv.png
+
+- name: click "export_data_as_csv" option in a dropdown
+  type: click
+  path: images/export_data_as_csv.png
+
+- name: click "download_now"
+  type: click
+  path: images/download_now.png

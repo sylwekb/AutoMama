@@ -1,0 +1,5 @@
+- name: find text on the screen
+  type: find_text
+  text: Ustawienia płatności
+  show: true
+  before_sleep: 5

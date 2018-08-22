@@ -82,3 +82,12 @@ Search for a text on the screen using Google OCR (the google API key is needed w
 - `type`: [required] - type of an action.
 - `before_sleep`: [optional] - Sleep time in seconds to sleep before action
 - `after_sleep`: [optional] - Sleep time in seconds to sleep after action
+
+## To do
+
+- [ ] tests
+- [ ] Better document `find_text` - write about how to provide Google Api Key
+- [ ] conditional statements support
+- [ ] loops support
+- [ ] variables support - so one could run workflow many times with different data (e.g. for different accounts)
+- [ ] UI - probably webUI

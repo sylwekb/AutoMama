@@ -25,6 +25,12 @@ Set default values for some of the variables. If used - should be on the first p
 - `default_match_strategy`: [optional][default=template_matching] - default match strategy for
                                                                     clicks.
 
+### `screenshot`
+Takes screenshot and saves it in path.
+
+- `path`: [required] - path to output image file with screenshot.
+
+
 ### `key_sequence`
 Presses key sequence for example for opening spotlight command+space.
 

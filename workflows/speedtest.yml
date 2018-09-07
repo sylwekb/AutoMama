@@ -1,0 +1,18 @@
+- name: Click speedtest icon
+  type: click
+  path: images/speedtest_icon.png
+  strategy: sift
+
+- name: Click "GO" text in speedtest app
+  type: click
+  path: images/speedtest_go.png
+  after_sleep: 2
+
+- name: Wait for "GO" text to appear again
+  type: wait_for_appear
+  path: images/speedtest_go.png
+  check_interval: 3
+
+- name: take screenshot of tests result.
+  type: screenshot
+  path: screenshots/speedtest.jpg

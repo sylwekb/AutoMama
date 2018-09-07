@@ -1,13 +1,15 @@
+from pathlib import Path as P
+from uuid import uuid4
 import base64
 import itertools
 import os
 import time
 
+from scipy.spatial.distance import cdist
 import cv2
 import numpy as np
 import pyautogui
 import requests
-from scipy.spatial.distance import cdist
 
 from .base import Action
 from exceptions import (
@@ -42,6 +44,23 @@ def nominate_misfit(points):
     # pick point which has the highest distance to all the rest points
     index = np.mean(distances.T, axis=0).argmax()
     return index
+
+
+class ScreenShot(Action):
+    instruction_type = "screenshot"
+    required = ["name", "path"]
+
+    def __init__(self, name, path):
+        self.path = path
+        super().__init__(name)
+
+    def run(self):
+        image = take_screenshot()
+        path = P(self.path)
+        if path.exists():
+            path = path.dirname / f"{path.stem}-{uuid4()}{path.suffix}"
+
+        cv2.imwrite(str(path), image)
 
 
 class TypeWriteAction(Action):

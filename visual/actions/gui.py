@@ -49,15 +49,17 @@ def nominate_misfit(points):
 class ScreenShot(Action):
     instruction_type = "screenshot"
     required = ["name", "path"]
+    optional = ["override"]
 
-    def __init__(self, name, path):
+    def __init__(self, name, path, override=False):
         self.path = path
+        self.override = override
         super().__init__(name)
 
     def run(self):
         image = take_screenshot()
         path = P(self.path)
-        if path.exists():
+        if path.exists() and not self.override:
             path = path.dirname / f"{path.stem}-{uuid4()}{path.suffix}"
 
         cv2.imwrite(str(path), image)
@@ -181,7 +183,9 @@ class ClickAction(TemplateAction):
     required = ["name", "path"]
     optional = ["strategy", "sleep", "show"]
 
-    def __init__(self, name, path, strategy=MATCH_STRATEGY.DEFAULT, sleep=0, show=False):
+    def __init__(
+        self, name, path, strategy=MATCH_STRATEGY.DEFAULT, sleep=0, show=False
+    ):
         self.sleep = sleep
         self.show = show
         super().__init__(name, path, strategy)
@@ -255,7 +259,9 @@ class WaitForAppear(WaitableAction):
                 print(f"\ttrying {i}. time, {self.path} is still not visible...")
 
             else:
-                print(f"\t{self.path} is visible, took: {time.time() - time_start:.2f}s")
+                print(
+                    f"\t{self.path} is visible, took: {time.time() - time_start:.2f}s"
+                )
                 return
 
             if time.time() > time_start + self.timeout:
@@ -288,7 +294,9 @@ class ScrollForAppear(WaitableAction):
                 pyautogui.scroll(self.distance)
 
             else:
-                print(f"\t{self.path} is visible, took: {time.time() - time_start:.2f}s")
+                print(
+                    f"\t{self.path} is visible, took: {time.time() - time_start:.2f}s"
+                )
                 return
 
             if time.time() > time_start + self.timeout:

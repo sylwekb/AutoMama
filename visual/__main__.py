@@ -2,6 +2,7 @@ import sys
 import time
 
 import yaml
+from actions.command import CommandAction
 
 from actions.gui import (
     ClickAction,
@@ -17,6 +18,7 @@ from actions.gui import (
 
 actions = [
     ClickAction,
+    CommandAction,
     FindTextAction,
     KeySequenceAction,
     ScreenShot,
@@ -25,6 +27,7 @@ actions = [
     WaitForAppear,
     WaitUntilVisible,
 ]
+
 name_to_action = {action.instruction_type: action for action in actions}
 
 
@@ -49,7 +52,7 @@ def parse_step(step, defaults_provider=None):
 
 def run_yaml(path):
     with open(path) as fp:
-        instruction = yaml.load(fp)
+        instruction = yaml.safe_load(fp)
 
     defaults_provider = {}
     default_match_strategy = MATCH_STRATEGY.DEFAULT

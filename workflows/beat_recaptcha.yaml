@@ -1,0 +1,50 @@
+- name: config
+  type: config
+  between_sleep: 0.1
+
+- name: open spotlight by cmd+space
+  type: key_sequence
+  keys: ["command", "space"]
+
+- name: type "Chrome" in spotlight
+  type: type_write
+  text: chrome
+
+- name: press "enter"
+  type: key_sequence
+  keys: ["enter"]
+  after_sleep: 1
+
+- name: open private mode
+  type: key_sequence
+  keys: ["command", "shift", "n"]
+  after_sleep: 2
+
+- name: activate the address bar
+  type: key_sequence
+  keys: ["command", "l"]
+  after_sleep: 2
+
+- name: activate the address bar
+  type: type_write
+  text: "https://patrickhlauke.github.io/recaptcha/"
+
+- name: press enter to go to the website
+  type: key_sequence
+  keys: ["enter"]
+  after_sleep: 4
+
+- name: click "I'm not a robot" check box
+  type: click
+  path: images/im_not_a_robot.png
+  after_sleep: 4
+
+- name: make screenshot
+  type: screenshot
+  override: true
+  path: images/screenshot.png
+
+
+- name: run command
+  type: command
+  command: "/Users/sylwek/.virtualenvs/AutoMama-C16vyhMB/bin/python scripts/object_detection.py images/screenshot.png"

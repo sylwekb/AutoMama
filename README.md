@@ -8,11 +8,11 @@ AutoMama is an automation framework for desktops. It has several types of tasks 
 ## How to install
 
 1. Clone repo
-2. `pip install -r requirements`
+2. `pipenv install`
 
 ## How to run
 
-`python visual <path_to_workflow>.yml`
+`pipenv run visual <path_to_workflow>.yml`
 
 ## How to write workflow?
 
